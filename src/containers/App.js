@@ -15,7 +15,7 @@ class App extends Component {
   async componentDidMount() {
     let myPokeList = [];
     let pokedata;
-    const pokeCount = 6;
+    const pokeCount = 151;
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${pokeCount}`);
     const pokeList = await response.json();
     for (let pkmn of pokeList.results) {
@@ -26,6 +26,15 @@ class App extends Component {
         console.log(pkmn.name + " from api");
         response = await fetch(pkmn.url);
         pokedata = await response.json();
+        // Filter Pokedata
+        pokedata = {
+          "id": pokedata.id,
+          "name": pokedata.name,
+          "types": pokedata.types,
+          "artwork": pokedata.sprites.other["official-artwork"].front_default,
+          "height": pokedata.height,
+          "weight": pokedata.weight,
+        }
         localStorage.setItem('pokeList_' + pkmn.name, JSON.stringify(pokedata));  
       }
       myPokeList.push(pokedata)

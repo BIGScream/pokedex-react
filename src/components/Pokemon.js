@@ -3,15 +3,14 @@ import "./Pokemon.css"
 
 const Pokemon = ({pokemon}) => {
     console.log(pokemon);
-    const artwork = pokemon.sprites.other["official-artwork"].front_default;
     return (
         <div className="pokemon-card">
             <h3>#{pokemon.id} {pokemon.name}</h3>
-            <img src={artwork} alt={pokemon.name} />
-            <ul>
+            <img src={pokemon.artwork} alt={pokemon.name} />
+            <ul className="types">
                 {
                     pokemon.types.map( (type) => {
-                        return <li>{type.type.name}</li>
+                        return <li className={"type type--" + type.type.name}>{type.type.name}</li>
                     })
                 }
             </ul>

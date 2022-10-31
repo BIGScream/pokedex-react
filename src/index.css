@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(90deg, rgba(238,57,57,1) 0%, rgb(255, 171, 4) 100%);
 }
 
 code {
@@ -19,4 +20,9 @@ code {
 img {
   max-width: 100%;
   height: auto;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
 }
