@@ -1,0 +1,7 @@
+.pokemon-card {
+    border: 1px solid red;
+}
+
+.pokemon-card h3 {
+    text-transform: capitalize;
+}

@@ -1,8 +1,8 @@
 import React from "react";
 import Pokemon from "./Pokemon";
+import "./PokemonList.css"
 
 const PokemonList = ({pokemonList}) => {
-    console.log("PokemonList", pokemonList)
     let pokemonListArr = [];
     if (pokemonList) {
         pokemonListArr = pokemonList.map( (singlePokemon, index) => {
@@ -10,7 +10,7 @@ const PokemonList = ({pokemonList}) => {
         });
     }
     return (
-        <div className="pokemon">
+        <div className="pokemon-list">
             {pokemonListArr}
         </div>
     );
