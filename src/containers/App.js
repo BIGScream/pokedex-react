@@ -47,7 +47,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img className="App-logo" alt="Pokemon Logo" src='http://pokedex.pascal-nees.de/assets/img/pokemon_logo.png'></img>
-          <h1>React Pokédex</h1>
+          <h1>Pokédex</h1>
         </header>
         <PokemonList pokemonList={this.state.pokemon} />
       </div>

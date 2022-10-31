@@ -5,8 +5,9 @@ const Pokemon = ({pokemon}) => {
     console.log(pokemon);
     return (
         <div className="pokemon-card">
-            <h3>#{pokemon.id} {pokemon.name}</h3>
-            <img src={pokemon.artwork} alt={pokemon.name} />
+            <div class="pokemon-card__id">#{pokemon.id}</div>
+            <h3>{pokemon.name}</h3>
+            <img src={pokemon.artwork} alt={pokemon.name} class="pokemon-card__artwork" />
             <ul className="types">
                 {
                     pokemon.types.map( (type) => {

@@ -1,7 +1,19 @@
 .pokemon-card {
+    position: relative;
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 12px 12px 3px 3px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 2em 1em;
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+}
+
+.pokemon-card__id {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-weight: bold;
+    padding-right: 4px;
 }
 
 .pokemon-card h3 {
@@ -18,7 +30,7 @@
 .pokemon-card .type {
     display: inline-block;
     padding: 3px 8px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 300px;
 }
 
@@ -41,3 +53,12 @@
 .type--rock{color: #b49b50}
 .type--steel{color: #b49b50}
 .type--water{color: #1c79d7}
+
+.pokemon-card__artwork {
+    transition: transform 333ms;
+    transform: scale(1);
+}
+
+.pokemon-card:hover .pokemon-card__artwork {
+    transform: scale(1.3);
+}
