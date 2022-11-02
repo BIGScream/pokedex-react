@@ -6,7 +6,7 @@ const Pokemon = ({pokemon}) => {
     return (
         <div className="pokemon-card">
             <div class="pokemon-card__id">#{pokemon.id}</div>
-            <h3>{pokemon.name}</h3>
+            <h3>{pokemon.translation.name}</h3>
             <img src={pokemon.artwork} alt={pokemon.name} class="pokemon-card__artwork" />
             <ul className="types">
                 {
@@ -15,6 +15,11 @@ const Pokemon = ({pokemon}) => {
                     })
                 }
             </ul>
+            <br></br>
+            <b>{pokemon.translation.genus}-Pokémon</b>
+            <br></br>
+            Gewicht: {pokemon.weight/10}kg<br></br>
+            Höhe: {pokemon.height*10}cm<br></br>
         </div>
     )
 }
