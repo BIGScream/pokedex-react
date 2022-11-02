@@ -2,12 +2,11 @@ import React from "react";
 import "./Pokemon.css"
 
 const Pokemon = ({pokemon}) => {
-    console.log(pokemon);
     return (
         <div className="pokemon-card">
-            <div class="pokemon-card__id">#{pokemon.id}</div>
-            <h3>{pokemon.translation.name}</h3>
-            <img src={pokemon.artwork} alt={pokemon.name} class="pokemon-card__artwork" />
+            <div className="pokemon-card__id">#{pokemon.id}</div>
+            <h3>{pokemon.translated_name}</h3>
+            <img src={pokemon.artwork} alt={pokemon.name} className="pokemon-card__artwork" />
             <ul className="types">
                 {
                     pokemon.types.map( (type) => {
@@ -16,10 +15,13 @@ const Pokemon = ({pokemon}) => {
                 }
             </ul>
             <br></br>
-            <b>{pokemon.translation.genus}-Pokémon</b>
+            <b>{pokemon.genus}</b>
             <br></br>
             Gewicht: {pokemon.weight/10}kg<br></br>
             Höhe: {pokemon.height*10}cm<br></br>
+            <br></br>
+
+            {pokemon.species_text}
         </div>
     )
 }

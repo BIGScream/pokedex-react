@@ -12,36 +12,12 @@ class App extends Component {
     }
   }
 
-  csvToArray(str, delimiter = ",") {
-    // slicing
-    const headers = str.slice(0, str.indexOf("\r\n")).split(delimiter);
-    const rows = str.slice(str.indexOf("\r\n") + 1).split("\r\n");
-  
-    // Map the rows
-    const arr = rows.map(function (row) {
-      const values = row.split(delimiter);
-      const el = headers.reduce(function (object, header, index) {
-        object[header] = values[index];
-        return object;
-      }, {});
-      return el;
-    });
-  
-    // return the array
-    return arr;
-  }
-  
-
   async componentDidMount() {
     let myPokeList = [];
-    let pokedata;
-    const pokeCount = 151;
+    let pokedata, speciesdata, speciesName, speciesText, speciesDescr;
+    const pokeCount = 4;
     let response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${pokeCount}`);
     const pokeList = await response.json();
-
-    response = await fetch(`/assets/translations.csv`);
-    let contents = await response.text();
-    let translationArray = this.csvToArray(contents, ",");
 
     for (let pkmn of pokeList.results) {
       if (localStorage.getItem('pokeList_' + pkmn.name)) {
@@ -49,8 +25,20 @@ class App extends Component {
         pokedata = JSON.parse(localStorage.getItem('pokeList_' + pkmn.name));
       } else {
         console.log(pkmn.name + " from api");
+
+        // get pokemon stat data
         response = await fetch(pkmn.url);
         pokedata = await response.json();
+
+        // get species data
+        response = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${pokedata.id}/`);
+        speciesdata = await response.json();
+        console.log(speciesdata);
+
+        speciesName = speciesdata.names.filter((name) => name.language.name === "de");
+        speciesText = speciesdata.flavor_text_entries.filter((txt) => txt.language.name === "de");
+        speciesDescr = speciesdata.genera.filter((desc) => desc.language.name === "de");
+
         // Filter Pokedata
         pokedata = {
           "id": pokedata.id,
@@ -59,7 +47,9 @@ class App extends Component {
           "artwork": pokedata.sprites.other["official-artwork"].front_default,
           "height": pokedata.height,
           "weight": pokedata.weight,
-          "translation": translationArray[pokedata.id-1]
+          "translated_name": speciesName[0].name,
+          "genus": speciesDescr[0].genus,
+          "species_text": speciesText[0].flavor_text
         }
         localStorage.setItem('pokeList_' + pkmn.name, JSON.stringify(pokedata));  
       }
